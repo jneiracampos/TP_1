@@ -1,0 +1,86 @@
+/**
+ * JavaCC template file created by SF JavaCC plugin 1.5.28+ wizard for JavaCC 1.5.0+.
+ */
+options
+{
+  static = true;
+}
+
+PARSER_BEGIN(logoLanguage)
+package lym;
+
+public class logoLanguage
+{
+  public static void main(String args []) throws ParseException
+  {
+    logoLanguage parser = new logoLanguage(System.in);
+    while (true)
+    {
+      System.out.println("Reading from standard input...");
+      System.out.print("Enter an expression like:");
+      try
+      {
+        logo();
+      }
+      catch (Exception e)
+      {
+        System.out.println("NOK.");
+        System.out.println(e.getMessage());
+        logoLanguage.ReInit(System.in);
+      }
+      catch (Error e)
+      {
+        System.out.println("Oops.");
+        System.out.println(e.getMessage());
+        break;
+      }
+    }
+  }
+}
+
+PARSER_END(logoLanguage)
+
+SKIP :
+{
+  " "
+| "\r"
+| "\t"
+| "\n"
+}
+
+//////TURTLE MOVEMENTS
+
+TOKEN :
+{
+  < FORWARD : "FORWARD" | "FD" >
+| < RIGHT : "RIGHT" | "RT" >
+| < LEFT : "LEFT" | "LR" >
+| < PENUP : "PENUP" | "PU" >
+| < PENDOWN : "PENDOWN" | "PD" >
+| < REPEAT : "REPEAT" >
+}
+
+//////STRUCTURE
+
+TOKEN :
+{
+  < OPENBRACKET : "[" >
+| < CLOSEBRACKET : "]" >
+| < DIGIT : ([ "0"-"9" ])+ >
+}
+
+void logo() :
+{}
+{
+  command() "."
+}
+
+void command() :
+{}
+{
+  (
+    (< FORWARD >|< RIGHT >|< LEFT >)< DIGIT >
+  | < REPEAT >< DIGIT >< OPENBRACKET > (logo())+ < CLOSEBRACKET >
+  | (< PENUP >|< PENDOWN >)
+  )
+}
