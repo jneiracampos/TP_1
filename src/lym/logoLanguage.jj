@@ -1,5 +1,5 @@
 /**
- * JavaCC template file created by SF JavaCC plugin 1.5.28+ wizard for JavaCC 1.5.0+.
+ * JavaCC template file created by SF JavaCC plugin 1.5.28+ wizard for JavaCC 1.5.0+
  */
 options
 {
@@ -24,7 +24,7 @@ public class logoLanguage
       }
       catch (Exception e)
       {
-        System.out.println("NOK.");
+        System.out.println("NOK...");
         System.out.println(e.getMessage());
         logoLanguage.ReInit(System.in);
       }

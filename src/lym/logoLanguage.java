@@ -15,7 +15,7 @@ public class logoLanguage implements logoLanguageConstants {
       }
       catch (Exception e)
       {
-        System.out.println("NOK.");
+        System.out.println("NOK...");
         System.out.println(e.getMessage());
         logoLanguage.ReInit(System.in);
       }
